@@ -4,7 +4,7 @@ import WeatherService from '../../service/weatherService.js';
 
 const router = Router();
 
-const weatherService =  WeatherService;
+const weatherService = WeatherService;
 const historyService = HistoryService;
 
 

@@ -43,8 +43,8 @@ class WeatherService {
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string) {
     const response = await fetch(query);
-    const data = await response.json();
-    return data;
+    const weatherData = await response.json();
+    return weatherData;
   }
   // private async fetchLocationData(query: string) {}
   // TODO: Create destructureLocationData method
