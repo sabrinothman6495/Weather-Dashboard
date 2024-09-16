@@ -10,18 +10,16 @@ class City {
 
 // TODO: Complete the HistoryService class
 class HistoryService {
+  constructor() {}
   // TODO: Define a read method that reads from the searchHistory.json file
   private async read() {
-    const fs = require('fs');
-    const data = fs.readFileSync('searchHistory.json');
-    return JSON.parse(data);
+    return JSON.parse(require('fs').readFileSync('searchHistory.json', 'utf8'));
   }
    
   // private async read() {}
   // TODO: Define a write method that writes the updated cities array to the searchHistory.json file
   private async write(cities: City[]) {
-    const fs = require('fs');
-    fs.writeFileSync('searchHistory.json', JSON.stringify(cities));
+    return require('fs').writeFileSync('searchHistory.json', JSON.stringify(cities));
   }
   // private async write(cities: City[]) {}
   // TODO: Define a getCities method that reads the cities from the searchHistory.json file and returns them as an array of City objects
