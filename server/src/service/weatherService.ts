@@ -95,17 +95,21 @@ class WeatherService {
   // private parseCurrentWeather(response: any) {}
   // TODO: Complete buildForecastArray method
   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
-    return weatherData.map((day) => {
-      return new Weather(
-        this.cityName,
-        day.weather.ts,
-        day.weather.tp,
-        day.weather.hu,
-        day.weather.ws,
-        day.weather.tp,
-        day.weather.ic
+    const forecast = [];
+    for (let i = 1; i < weatherData.length; i++) {
+      forecast.push(
+        new Weather(
+          currentWeather.city,
+          weatherData[i].ts,
+          weatherData[i].tp,
+          weatherData[i].hu,
+          weatherData[i].ws,
+          weatherData[i].tp,
+          weatherData[i].ic
+        )
       );
-    });
+    }
+    return forecast;
   }
   // private buildForecastArray(currentWeather: Weather, weatherData: any[]) {}
   // TODO: Complete getWeatherForCity method
