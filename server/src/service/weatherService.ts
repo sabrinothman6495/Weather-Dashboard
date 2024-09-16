@@ -29,6 +29,7 @@ class Weather {
 
 // TODO: Complete the WeatherService class
 class WeatherService {
+
   // TODO: Define the baseURL, API key, and city name properties
   private baseURL: string;
   private apiKey: string;
@@ -38,7 +39,28 @@ class WeatherService {
     this.baseURL = process.env.WEATHER_API_BASE_URL || '';
     this.apiKey = process.env.WEATHER_API_KEY || '';
     this.cityName = '';
+    console.log(this.baseURL);
+    console.log(this.apiKey);
   }
+
+  // Define the getWeather method
+  async getWeather(city: string) {
+    this.cityName = city;
+    const url = `${this.baseURL}?q=${this.cityName}&appid=${this.apiKey}`;
+    
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const weatherData = await response.json();
+      return weatherData;
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+      throw error;
+    }
+  }
+
 
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string) {
