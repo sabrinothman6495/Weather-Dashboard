@@ -64,7 +64,7 @@ class WeatherService {
 
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string) {
-    const response = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=${query}`);
+    const response = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=${this.apiKey}&location=${query}`);
     const data = await response.json();
     return data;
   }
@@ -106,12 +106,12 @@ class WeatherService {
   private parseCurrentWeather(response: any) {
     return new Weather(
       this.cityName,
-      response.current.weather.ts,
-      response.current.weather.tp,
-      response.current.weather.hu,
-      response.current.weather.ws,
-      response.current.weather.tp,
-      response.current.weather.ic
+      response.list[0].dt_txt, // Adjust this according to the actual response structure
+      response.list[0].main.temp,
+      response.list[0].main.humidity,
+      response.list[0].wind.speed,
+      response.list[0].uvi,
+      response.list[0].weather[0].icon
     );
   }
   // private parseCurrentWeather(response: any) {}
@@ -122,12 +122,12 @@ class WeatherService {
       forecast.push(
         new Weather(
           currentWeather.city,
-          weatherData[i].ts,
-          weatherData[i].tp,
-          weatherData[i].hu,
-          weatherData[i].ws,
-          weatherData[i].tp,
-          weatherData[i].ic
+          weatherData[i].dt_txt,
+          weatherData[i].main.temp,
+          weatherData[i].main.humidity,
+          weatherData[i].wind.speed,
+          weatherData[i].uvi,
+          weatherData[i].weather[0].icon
         )
       );
     }
