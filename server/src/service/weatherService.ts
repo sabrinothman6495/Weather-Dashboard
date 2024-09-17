@@ -64,7 +64,7 @@ class WeatherService {
 
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string) {
-    const response = await fetch(query);
+    const response = await fetch(`http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=${query}`);
     const data = await response.json();
     return data;
   }

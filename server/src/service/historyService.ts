@@ -10,7 +10,13 @@ class City {
 
 // TODO: Complete the HistoryService class
 class HistoryService {
-  constructor() {}
+  constructor() {
+    this.read = this.read.bind(this);
+    this.write = this.write.bind(this);
+    this.getCities = this.getCities.bind(this);
+    this.addCity = this.addCity.bind(this);
+    this.removeCity = this.removeCity.bind(this);
+  }
   // TODO: Define a read method that reads from the searchHistory.json file
   private async read() {
     return JSON.parse(require('fs').readFileSync('searchHistory.json', 'utf8'));
